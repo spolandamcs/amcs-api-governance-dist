@@ -2,7 +2,7 @@
 
 Distribution repo for the **AMCS REST API Guidelines** Spectral ruleset.
 
-This repo hosts the bundled `amcs-api-guidelines.js`. Consumers fetch it over HTTPS at lint time — mimicking the production CDN/blob pattern the company will eventually use.
+This repo hosts the bundled `amcs-api-guidelines.js`. Consumers fetch it over HTTPS at lint time — mimicking the production CDN/blob pattern the company could eventually use.
 
 ## Consume from Spectral
 
