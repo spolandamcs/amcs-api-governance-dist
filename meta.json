@@ -1,0 +1,108 @@
+{
+  "inputs": {
+    "node_modules/pluralize/pluralize.js": {
+      "bytes": 12618,
+      "imports": [
+        {
+          "path": "<runtime>",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "cjs"
+    },
+    "spectral/functions/isPluralCollection.js": {
+      "bytes": 2196,
+      "imports": [
+        {
+          "path": "node_modules/pluralize/pluralize.js",
+          "kind": "import-statement",
+          "original": "pluralize"
+        }
+      ],
+      "format": "esm"
+    },
+    "spectral/functions/pathStructure.js": {
+      "bytes": 2280,
+      "imports": [],
+      "format": "esm"
+    },
+    "spectral/functions/versionParameter.js": {
+      "bytes": 2488,
+      "imports": [],
+      "format": "esm"
+    },
+    "spectral/functions/deprecationHeader.js": {
+      "bytes": 1572,
+      "imports": [],
+      "format": "esm"
+    },
+    "spectral/amcs-api-guidelines.js": {
+      "bytes": 25386,
+      "imports": [
+        {
+          "path": "@stoplight/spectral-functions",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "spectral/functions/isPluralCollection.js",
+          "kind": "import-statement",
+          "original": "./functions/isPluralCollection.js"
+        },
+        {
+          "path": "spectral/functions/pathStructure.js",
+          "kind": "import-statement",
+          "original": "./functions/pathStructure.js"
+        },
+        {
+          "path": "spectral/functions/versionParameter.js",
+          "kind": "import-statement",
+          "original": "./functions/versionParameter.js"
+        },
+        {
+          "path": "spectral/functions/deprecationHeader.js",
+          "kind": "import-statement",
+          "original": "./functions/deprecationHeader.js"
+        }
+      ],
+      "format": "esm"
+    }
+  },
+  "outputs": {
+    "dist/amcs-api-guidelines.js": {
+      "imports": [
+        {
+          "path": "@stoplight/spectral-functions",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "exports": [
+        "default"
+      ],
+      "entryPoint": "spectral/amcs-api-guidelines.js",
+      "inputs": {
+        "node_modules/pluralize/pluralize.js": {
+          "bytesInOutput": 11003
+        },
+        "spectral/amcs-api-guidelines.js": {
+          "bytesInOutput": 22357
+        },
+        "spectral/functions/isPluralCollection.js": {
+          "bytesInOutput": 992
+        },
+        "spectral/functions/pathStructure.js": {
+          "bytesInOutput": 931
+        },
+        "spectral/functions/versionParameter.js": {
+          "bytesInOutput": 1370
+        },
+        "spectral/functions/deprecationHeader.js": {
+          "bytesInOutput": 797
+        }
+      },
+      "bytes": 39829
+    }
+  }
+}
