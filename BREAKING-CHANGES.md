@@ -1,8 +1,8 @@
 # Breaking changes
 
-Tags in this repo are cut **only for breaking changes** — see `README.md` for the policy. Each tag below documents what changed and what consumers must do.
+Part of the PoC's illustrated versioning model — in this pattern, tags in this repo would only be cut for breaking changes (see `README.md`). Each tag below would document what changed and what consumers would need to do.
 
-A change is "breaking" if it could fail a previously-passing consumer's `spectral lint`:
+A change would be "breaking" if it could fail a previously-passing consumer's `spectral lint`:
 
 - A new rule at `warn` or `error` severity that fires on existing specs.
 - An existing rule's severity raised from `info` → `warn` (or `warn` → `error`).

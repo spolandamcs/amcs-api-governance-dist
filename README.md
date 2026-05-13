@@ -1,8 +1,8 @@
 # amcs-api-governance-dist
 
-Distribution repo for the **AMCS REST API Guidelines** Spectral ruleset.
+Distribution repo for the **AMCS REST API Guidelines** Spectral ruleset. Part of a proof-of-concept — illustrates one way the ruleset could be published and consumed; the AMCS-internal production hosting model is still TBD.
 
-This repo hosts the bundled `amcs-api-guidelines.js`. Consumers fetch it over HTTPS at lint time — mimicking the production CDN/blob pattern the company could eventually use.
+This repo hosts the bundled `amcs-api-guidelines.js`. Consumers fetch it over HTTPS at lint time — mimicking the CDN/blob pattern the company could eventually use.
 
 ## Consume from Spectral
 
@@ -20,15 +20,15 @@ Stable — pin to a release tag:
 
 You can pass that URL directly to `spectral lint --ruleset <url>`, or reference it from a `.spectral.yaml` `extends:` list.
 
-## Versioning policy
+## Versioning model (PoC pattern)
 
-We follow a **rolling-`main`** model with **breaking-only tags**:
+The PoC illustrates a **rolling-`main`** model with **breaking-only tags** — one possible answer to "how does a producer publish a governance ruleset to many consumers":
 
-- `main` is the live ruleset. Non-breaking changes — clarified error messages, new `info`-severity rules, additions to the `singletons` allow-list — land directly on `main` and propagate to every consumer on their next lint.
-- **Tags are cut only on breaking changes** — anything that could fail an existing consumer's gate. Concretely: adding a new `warn`/`error`-severity rule, raising an existing rule's severity, removing an allow-list entry, or removing/renaming a rule consumers depend on.
-- When a tag is cut, `BREAKING-CHANGES.md` records the reason and the consumer migration path.
+- `main` is the live ruleset. Non-breaking changes — clarified error messages, new `info`-severity rules, additions to the `singletons` allow-list — could land directly on `main` and propagate to every consumer on their next lint.
+- **Tags would only be cut on breaking changes** — anything that could fail an existing consumer's gate. Concretely: adding a new `warn`/`error`-severity rule, raising an existing rule's severity, removing an allow-list entry, or removing/renaming a rule consumers depend on.
+- When a tag is cut, `BREAKING-CHANGES.md` would record the reason and the consumer migration path.
 
-The tag is the **opt-in stability hatch**: pin to a tag if you can't take the new gating rule yet, then unpin once you're caught up.
+The tag is the **opt-in stability hatch**: a team could pin to a tag if they can't take a new gating rule yet, then unpin once they're caught up.
 
 ## How "the blob" actually works
 
@@ -59,11 +59,13 @@ git push origin v0.2.0
 
 Once pushed, the URL `…/v0.2.0/amcs-api-guidelines.js` immediately serves the file as of that commit. Tags are intended to be immutable — once published, consumers expect that URL to keep returning the same bytes forever. If you ever need to "fix" a tagged release, cut a new tag (`v0.2.1`); don't move the old one.
 
-## Cutting a release
+## An example release flow
 
-1. Land the change on `main` (via PR; the bundled `.js` is generated upstream and dropped into this repo).
+Illustrative — what a release flow following the model above could look like:
+
+1. Land the change on `main` (via PR; the bundled `.js` would be generated upstream and dropped into this repo).
 2. Decide: is it breaking? Use the criteria above. If yes:
-   1. Add an entry to `BREAKING-CHANGES.md` describing what changed and what consumers must do.
+   1. Add an entry to `BREAKING-CHANGES.md` describing what changed and what consumers would need to do.
    2. `git tag -a vX.Y.0 -m "..."`, `git push origin vX.Y.0`.
    3. Notify consumers (email / channel) so they can pin if they can't take the change immediately.
 3. If non-breaking: nothing else to do — consumers on `main` pick it up automatically.
