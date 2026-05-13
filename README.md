@@ -1,6 +1,6 @@
 # amcs-api-governance-dist
 
-**This GitHub repo exists only for the PoC.** The canonical AMCS REST API Guidelines Spectral ruleset is developed, tested, and built in the AMCS Platform Engineering [**ApiGovernance Azure DevOps repo**](https://dev.azure.com/amcsgroup/Platform%20Engineering/_git/ApiGovernance). The bundled output (`amcs-api-guidelines.js`) is mirrored here so the PoC's GitHub Actions workflow can fetch it over anonymous HTTPS.
+**This GitHub repo exists only for the PoC.** The canonical AMCS REST API Guidelines Spectral ruleset is developed, tested, and built by the **API team** in the [**ApiGovernance Azure DevOps repo**](https://dev.azure.com/amcsgroup/Platform%20Engineering/_git/ApiGovernance). The bundled output (`amcs-api-guidelines.js`) is mirrored here so the PoC's GitHub Actions workflow can fetch it over anonymous HTTPS.
 
 In the eventual ADO implementation this mirror disappears — the consumer pipeline fetches the bundled `.js` directly from the ApiGovernance repo's `/dist/` folder via the ADO raw-file URL. No separate blob, CDN, or mirror is needed: the ADO equivalent of GitHub's raw URL is the ADO raw-file URL on the repo itself, with `$(System.AccessToken)` for auth.
 
