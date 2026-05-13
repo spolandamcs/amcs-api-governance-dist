@@ -38,6 +38,8 @@ The tag is the **opt-in stability hatch**: a team could pin to a tag if they can
 https://raw.githubusercontent.com/<owner>/<repo>/<ref>/<path>
 ```
 
+In the eventual Azure DevOps implementation this URL would point at internal storage instead — Azure Blob Storage, an OCI artifact in Azure Container Registry, or an ADO repo raw-file URL (`dev.azure.com/<org>/<project>/_apis/git/repositories/<repo>/items?path=...&versionDescriptor.version=<tag>&api-version=7.1`). The shape is the same: stable per-version HTTPS GET, anonymous or token-authenticated. The consumer pipeline's `RULESET_URL` is the only thing that changes.
+
 For this repo:
 
 | Ref type | Example | Behavior |
