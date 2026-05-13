@@ -1,8 +1,8 @@
 # amcs-api-governance-dist
 
-Distribution repo for the **AMCS REST API Guidelines** Spectral ruleset. Part of a proof-of-concept — illustrates one way the ruleset could be published and consumed; the AMCS-internal production hosting model is still TBD.
+**This GitHub repo exists only for the PoC.** The canonical AMCS REST API Guidelines Spectral ruleset is developed, tested, and built in the AMCS Platform Engineering [**ApiGovernance Azure DevOps repo**](https://dev.azure.com/amcsgroup/Platform%20Engineering/_git/ApiGovernance). The bundled output (`amcs-api-guidelines.js`) is mirrored here so the PoC's GitHub Actions workflow can fetch it over anonymous HTTPS.
 
-This repo hosts the bundled `amcs-api-guidelines.js`. Consumers fetch it over HTTPS at lint time — mimicking the CDN/blob pattern the company could eventually use.
+In the eventual ADO implementation this mirror disappears — the consumer pipeline fetches directly from internal storage populated by ApiGovernance's CI (Azure Blob, OCI artifact in ACR, or the ApiGovernance repo's raw-file URL). The shape of the URL and the consumer code are unchanged.
 
 ## Consume from Spectral
 
@@ -72,9 +72,9 @@ Illustrative — what a release flow following the model above could look like:
    3. Notify consumers (email / channel) so they can pin if they can't take the change immediately.
 3. If non-breaking: nothing else to do — consumers on `main` pick it up automatically.
 
-## Source
+## Source / build provenance
 
-Built from `https://dev.azure.com/amcsgroup/Platform%20Engineering/_git/ApiGovernance`. See `meta.json` for the exact build provenance. Do not edit `amcs-api-guidelines.js` by hand — it's a bundled output.
+`amcs-api-guidelines.js` is the bundled output of the ApiGovernance ADO repo's build. See `meta.json` for the exact provenance (commit SHA, build date). Do not edit `amcs-api-guidelines.js` by hand here — any changes belong in ApiGovernance.
 
 ## Releases
 
