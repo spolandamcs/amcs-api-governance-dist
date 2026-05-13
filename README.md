@@ -2,7 +2,7 @@
 
 **This GitHub repo exists only for the PoC.** The canonical AMCS REST API Guidelines Spectral ruleset is developed, tested, and built in the AMCS Platform Engineering [**ApiGovernance Azure DevOps repo**](https://dev.azure.com/amcsgroup/Platform%20Engineering/_git/ApiGovernance). The bundled output (`amcs-api-guidelines.js`) is mirrored here so the PoC's GitHub Actions workflow can fetch it over anonymous HTTPS.
 
-In the eventual ADO implementation this mirror disappears — the consumer pipeline fetches directly from internal storage populated by ApiGovernance's CI (Azure Blob, OCI artifact in ACR, or the ApiGovernance repo's raw-file URL). The shape of the URL and the consumer code are unchanged.
+In the eventual ADO implementation this mirror disappears — the consumer pipeline fetches the bundled `.js` directly from the ApiGovernance repo's `/dist/` folder via the ADO raw-file URL. No separate blob, CDN, or mirror is needed: the ADO equivalent of GitHub's raw URL is the ADO raw-file URL on the repo itself, with `$(System.AccessToken)` for auth.
 
 ## Consume from Spectral
 
@@ -38,7 +38,7 @@ The tag is the **opt-in stability hatch**: a team could pin to a tag if they can
 https://raw.githubusercontent.com/<owner>/<repo>/<ref>/<path>
 ```
 
-In the eventual Azure DevOps implementation this URL would point at internal storage instead — Azure Blob Storage, an OCI artifact in Azure Container Registry, or an ADO repo raw-file URL (`dev.azure.com/<org>/<project>/_apis/git/repositories/<repo>/items?path=...&versionDescriptor.version=<tag>&api-version=7.1`). The shape is the same: stable per-version HTTPS GET, anonymous or token-authenticated. The consumer pipeline's `RULESET_URL` is the only thing that changes.
+In the eventual Azure DevOps implementation this URL points at the ApiGovernance repo's raw-file URL directly: `https://dev.azure.com/amcsgroup/Platform%20Engineering/_apis/git/repositories/ApiGovernance/items?path=/dist/amcs-api-guidelines.js&versionDescriptor.version=<tag-or-branch>&api-version=7.1`. Same shape — stable per-version HTTPS GET — just authenticated with `$(System.AccessToken)` since the repo is internal. The consumer pipeline's `RULESET_URL` is the only thing that changes.
 
 For this repo:
 
